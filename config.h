@@ -10,7 +10,7 @@ static unsigned int gappov = 6;
 static const int smartgaps = 1; // 0 is no smartgaps
 static int showbar = 1; // 0 is no bar
 static int topbar = 1; // 0 is bottom bar
-static char *fonts[] = { "FiraCode Nerd Font:size=13:antialias=true:autohint=true" };
+static char *fonts[] = { "JetbrainsMono Nerd Font:size=13:antialias=true:autohint=true" };
 static char normbgcolor[] = "#222222";
 static char normbordercolor[] = "#444444";
 static char normfgcolor[] = "#bbbbbb";
@@ -117,8 +117,8 @@ static Key keys[] = {
 	{ MODKEY, XK_Return, spawn, SHCMD("$TERMINAL") },
 	{ MODKEY|ShiftMask, XK_Return, spawn, SHCMD("samedir") },
   { MODKEY, XK_r, spawn, SHCMD("$TERMINAL -e lfub") },
-  { MODKEY|ShiftMask, XK_r, spawn, SHCMD("$TERMINAL -e gotop") },
-  { MODKEY, XK_e, spawn, SHCMD("$TERMINAL -e neomutt; pkill -RTMIN+12 dwmblocks") },
+  { MODKEY|ShiftMask, XK_r, spawn, SHCMD("$TERMINAL -e btm") },
+  { MODKEY, XK_t, spawn, SHCMD("obsidian") },
   { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
   { MODKEY, XK_m, spawn, SHCMD("$TERMINAL -e ncspot") },
   { MODKEY, XK_a, spawn, SHCMD("$TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)") },
@@ -134,7 +134,6 @@ static Key keys[] = {
   { 0, XK_Print, spawn, SHCMD("dmenu_maim") },
   { MODKEY, XK_Print,  spawn, SHCMD("dmenu_record") },
   { MODKEY|ShiftMask, XK_Print, spawn, SHCMD("dmenu_record kill") },
-  { MODKEY, XK_Insert, spawn, SHCMD("getqr") },
 
   // multimedia
 	{ 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle; kill -44 $(pidof dwmblocks)") },
