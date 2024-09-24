@@ -139,9 +139,9 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioLowerVolume, spawn,	SHCMD("amixer set Master 5%-; kill -44 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioRaiseVolume, spawn, SHCMD("amixer set Master 5%+; kill -44 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioPlay, spawn, SHCMD("playerctl -p ncspot,spotify,mpv,%any play-pause") },
-	{ 0, XF86XK_AudioPrev, spawn, SHCMD("playerctl -p ncspot,spotify,mpv,%any previous") },
-  { 0, XF86XK_AudioNext, spawn, SHCMD("playerctl -p ncspot,spotify,mpv,%any next") },
+	{ 0, XF86XK_AudioPlay, spawn, SHCMD("playerctl -p ncspot,mpv,%any play-pause") },
+	{ 0, XF86XK_AudioPrev, spawn, SHCMD("playerctl -p ncspot,mpv,%any previous") },
+  { 0, XF86XK_AudioNext, spawn, SHCMD("playerctl -p ncspot,mpv,%any next") },
 
   // layouts
   { MODKEY, XK_u, setlayout, {.v = &layouts[0]} }, // tile
