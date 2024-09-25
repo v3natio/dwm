@@ -116,7 +116,7 @@ static Key keys[] = {
   // launch programs
 	{ MODKEY, XK_Return, spawn, SHCMD("$TERMINAL") },
 	{ MODKEY|ShiftMask, XK_Return, spawn, SHCMD("samedir") },
-  { MODKEY, XK_r, spawn, SHCMD("$TERMINAL -e lfub") },
+  { MODKEY, XK_r, spawn, SHCMD("$TERMINAL -e yazi") },
   { MODKEY|ShiftMask, XK_r, spawn, SHCMD("$TERMINAL -e btm") },
   { MODKEY, XK_t, spawn, SHCMD("obsidian") },
   { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
