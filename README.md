@@ -10,6 +10,7 @@ The upstream development for `dwm` can be found [here](https://git.suckless.org/
 
 - [actual fullscreen](https://dwm.suckless.org/patches/actualfullscreen/)
 - [centered master](https://dwm.suckless.org/patches/centeredmaster/)
+- [deck](https://dwm.suckless.org/patches/deck/)
 - [fullgaps](https://dwm.suckless.org/patches/fullgaps/)
 - [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
 - [no border](https://dwm.suckless.org/patches/noborder/)
