@@ -8,8 +8,9 @@ The upstream development for `dwm` can be found [here](https://git.suckless.org/
 
 # Patches
 
-- [noborder](https://dwm.suckless.org/patches/noborder/)
-- [notitle](https://dwm.suckless.org/patches/notitle/)
+- [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
+- [no border](https://dwm.suckless.org/patches/noborder/)
+- [no title](https://dwm.suckless.org/patches/notitle/)
 - [shiftview](https://dwm.suckless.org/patches/nextprev/)
 
 # Install
