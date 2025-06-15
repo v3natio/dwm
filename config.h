@@ -50,6 +50,7 @@ static const Layout layouts[] = {
   { ">M>", centeredfloatingmaster }, // Floating Center: master floats in center
   { "|M|", centeredmaster }, // Center: master on center, slaves on sides
   { "><>", NULL }, // Floating: window is freefloat
+  { NULL, NULL}, // placeholder for cycle-layouts
 };
 
 /* key definitions */
@@ -69,7 +70,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; // component of dmenucmd, manipulated in spawn()
-static const char *dmenucmd[] = { "dmenu_recency", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_recency", "-m", dmenumon, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 /* Xresources preferences to load at startup */
@@ -113,7 +114,7 @@ static const Key keys[] = {
 
   // main
   { MODKEY, XK_BackSpace, spawn, SHCMD("dmenu_system") },
-	{ MODKEY, XK_d, spawn, {.v = dmenucmd } },
+	{ MODKEY, XK_d, spawn, SHCMD("dmenu_recency") },
 	{ MODKEY, XK_Return, spawn, {.v = termcmd } },
   { MODKEY|ShiftMask, XK_Return, spawn, SHCMD("samedir") },
   { MODKEY, XK_q, killclient, {0} },
@@ -158,6 +159,8 @@ static const Key keys[] = {
   { MODKEY, XK_o, shiftview, {.i = +1 } },
   { MODKEY, XK_y, shiftview, {.i = -1 } },
   { MODKEY, XK_Tab, view, {0} },
+  { MODKEY|ShiftMask, XK_u, cyclelayout, {.i = -1 } },
+  { MODKEY|ShiftMask, XK_i, cyclelayout, {.i = +1 } },
   { MODKEY, XK_u, setlayout, {.v = &layouts[0]} }, // tile
   { MODKEY, XK_i, setlayout, {.v = &layouts[1]} }, // monocle
   { MODKEY, XK_g,  setgaps, {.i = +1 } },
