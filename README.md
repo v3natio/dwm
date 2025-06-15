@@ -9,10 +9,13 @@ The upstream development for `dwm` can be found [here](https://git.suckless.org/
 # Patches
 
 - [actual fullscreen](https://dwm.suckless.org/patches/actualfullscreen/)
+- [centered master](https://dwm.suckless.org/patches/centeredmaster/)
 - [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
 - [no border](https://dwm.suckless.org/patches/noborder/)
 - [no title](https://dwm.suckless.org/patches/notitle/)
 - [shiftview](https://dwm.suckless.org/patches/nextprev/)
+- [stacker](https://dwm.suckless.org/patches/stacker/)
+- [swallow](https://dwm.suckless.org/patches/swallow/)
 
 # Install
 
