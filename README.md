@@ -18,6 +18,7 @@ The upstream development for `dwm` can be found [here](https://git.suckless.org/
 - [shiftview](https://dwm.suckless.org/patches/nextprev/)
 - [stacker](https://dwm.suckless.org/patches/stacker/)
 - [swallow](https://dwm.suckless.org/patches/swallow/)
+- [xresources](https://dwm.suckless.org/patches/xresources/)
 
 # Install
 
