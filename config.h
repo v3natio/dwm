@@ -188,6 +188,7 @@ static const Key keys[] = {
   { MODKEY, XK_f, togglefullscr, {0} },
   { MODKEY, XK_b, togglebar, {0} },
   { MODKEY, XK_space, zoom, {0} },
+  { MODKEY, XK_s, togglesticky, {0} },
 
   // monitors
 	{ MODKEY, XK_Right, focusmon, {.i = +1 } },
