@@ -16,6 +16,40 @@ static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
+static char termcol0[] = "#000000"; /* black   */
+static char termcol1[] = "#ff0000"; /* red     */
+static char termcol2[] = "#33ff00"; /* green   */
+static char termcol3[] = "#ff0099"; /* yellow  */
+static char termcol4[] = "#0066ff"; /* blue    */
+static char termcol5[] = "#cc00ff"; /* magenta */
+static char termcol6[] = "#00ffff"; /* cyan    */
+static char termcol7[] = "#d0d0d0"; /* white   */
+static char termcol8[]  = "#808080"; /* black   */
+static char termcol9[]  = "#ff0000"; /* red     */
+static char termcol10[] = "#33ff00"; /* green   */
+static char termcol11[] = "#ff0099"; /* yellow  */
+static char termcol12[] = "#0066ff"; /* blue    */
+static char termcol13[] = "#cc00ff"; /* magenta */
+static char termcol14[] = "#00ffff"; /* cyan    */
+static char termcol15[] = "#ffffff"; /* white   */
+static char *termcolor[] = {
+  termcol0,
+  termcol1,
+  termcol2,
+  termcol3,
+  termcol4,
+  termcol5,
+  termcol6,
+  termcol7,
+  termcol8,
+  termcol9,
+  termcol10,
+  termcol11,
+  termcol12,
+  termcol13,
+  termcol14,
+  termcol15,
+};
 static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -38,9 +72,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static int nmaster     = 1;    /* number of clients in master area */
-static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const int nmaster     = 1;    /* number of clients in master area */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -78,27 +112,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
-/*
-* Xresources preferences to load at startup
-*/
-ResourcePref resources[] = {
-  { "font",               STRING,  &font },
-  { "dmenufont",          STRING,  &dmenufont },
-  { "normbgcolor",        STRING,  &normbgcolor },
-  { "normbordercolor",    STRING,  &normbordercolor },
-  { "normfgcolor",        STRING,  &normfgcolor },
-  { "selbgcolor",         STRING,  &selbgcolor },
-  { "selbordercolor",     STRING,  &selbordercolor },
-  { "selfgcolor",         STRING,  &selfgcolor },
-  { "borderpx",          	INTEGER, &borderpx },
-  { "snap",          		INTEGER, &snap },
-  { "showbar",          	INTEGER, &showbar },
-  { "topbar",          	INTEGER, &topbar },
-  { "nmaster",          	INTEGER, &nmaster },
-  { "resizehints",       	INTEGER, &resizehints },
-  { "mfact",      	 	FLOAT,   &mfact },
-};
-
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -130,6 +143,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+  { MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
