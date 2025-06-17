@@ -12,14 +12,18 @@ The upstream development for `dwm` can be found [here](https://git.suckless.org/
 - [centered master](https://dwm.suckless.org/patches/centeredmaster/)
 - [cycle layouts](https://dwm.suckless.org/patches/cyclelayouts/)
 - [deck](https://dwm.suckless.org/patches/deck/)
+  - [deck-tilegap](https://dwm.suckless.org/patches/deck/)
 - [fullgaps](https://dwm.suckless.org/patches/fullgaps/)
 - [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
 - [no border](https://dwm.suckless.org/patches/noborder/)
 - [no title](https://dwm.suckless.org/patches/notitle/)
+- [preventfocusshift](https://dwm.suckless.org/patches/preventfocusshift/)
 - [shiftview](https://dwm.suckless.org/patches/nextprev/)
 - [stacker](https://dwm.suckless.org/patches/stacker/)
+- [status2d](https://dwm.suckless.org/patches/status2d/)
+  - [status2d-xrdb](https://dwm.suckless.org/patches/status2d/)
 - [swallow](https://dwm.suckless.org/patches/swallow/)
-- [xresources](https://dwm.suckless.org/patches/xresources/)
+- [xrdb](https://dwm.suckless.org/patches/xresources/)
 
 # Install
 
