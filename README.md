@@ -15,6 +15,7 @@ The upstream development for `dwm` can be found [here](https://git.suckless.org/
   - [deck-tilegap](https://dwm.suckless.org/patches/deck/)
 - [fullgaps](https://dwm.suckless.org/patches/fullgaps/)
 - [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
+- [moveresize](https://dwm.suckless.org/patches/moveresize/)
 - [no border](https://dwm.suckless.org/patches/noborder/)
 - [no title](https://dwm.suckless.org/patches/notitle/)
 - [preventfocusshift](https://dwm.suckless.org/patches/preventfocusshift/)
@@ -22,6 +23,7 @@ The upstream development for `dwm` can be found [here](https://git.suckless.org/
 - [stacker](https://dwm.suckless.org/patches/stacker/)
 - [status2d](https://dwm.suckless.org/patches/status2d/)
   - [status2d-xrdb](https://dwm.suckless.org/patches/status2d/)
+- [sticky](https://dwm.suckless.org/patches/sticky/)
 - [swallow](https://dwm.suckless.org/patches/swallow/)
 - [xrdb](https://dwm.suckless.org/patches/xresources/)
 

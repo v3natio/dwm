@@ -152,7 +152,7 @@ static const Key keys[] = {
   { MODKEY|ShiftMask, XK_r, spawn, SHCMD("$TERMINAL -e btm") },
   { MODKEY, XK_t, spawn, SHCMD("obsidian") },
   { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
-  { MODKEY, XK_m, spawn, SHCMD("$TERMINAL -e ncspot") },
+  { MODKEY, XK_m, spawn, SHCMD("spotify") },
   { MODKEY, XK_a, spawn, SHCMD("$TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)") },
 
   // brightness
@@ -189,12 +189,20 @@ static const Key keys[] = {
   { MODKEY, XK_b, togglebar, {0} },
   { MODKEY, XK_space, zoom, {0} },
   { MODKEY, XK_s, togglesticky, {0} },
+  { MODKEY, XK_Down, moveresize, {.v = "0x 25y 0w 0h" } },
+  { MODKEY, XK_Up, moveresize, {.v = "0x -25y 0w 0h" } },
+  { MODKEY, XK_Right, moveresize, {.v = "25x 0y 0w 0h" } },
+  { MODKEY, XK_Left, moveresize, {.v = "-25x 0y 0w 0h" } },
+  { MODKEY|ShiftMask, XK_Down, moveresize, {.v = "0x 0y 0w 25h" } },
+  { MODKEY|ShiftMask, XK_Up, moveresize, {.v = "0x 0y 0w -25h" } },
+  { MODKEY|ShiftMask, XK_Right, moveresize, {.v = "0x 0y 25w 0h" } },
+  { MODKEY|ShiftMask, XK_Left, moveresize, {.v = "0x 0y -25w 0h" } },
 
   // monitors
-	{ MODKEY, XK_Right, focusmon, {.i = +1 } },
-	{ MODKEY|ShiftMask, XK_Right, tagmon, {.i = +1 } },
-	{ MODKEY, XK_Left, focusmon, {.i = -1 } },
-	{ MODKEY|ShiftMask, XK_Left, tagmon, {.i = -1 } },
+	//{ MODKEY, XK_Right, focusmon, {.i = +1 } },
+	//{ MODKEY|ShiftMask, XK_Right, tagmon, {.i = +1 } },
+	//{ MODKEY, XK_Left, focusmon, {.i = -1 } },
+	//{ MODKEY|ShiftMask, XK_Left, tagmon, {.i = -1 } },
 };
 
 /* button definitions */
