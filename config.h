@@ -7,31 +7,31 @@ static unsigned int snap = 32; // snap pixel
 static const int swallowfloating = 0; // 1 means swallow floating windows by default
 static int showbar = 1; // 0 means no bar
 static int topbar = 1; // 0 means bottom bar
-static char font[] = "JetbrainsMono Nerd Font:size=13:antialias=true:autohint=true";
-static char dmenufont[] = "JetbrainsMono Nerd Font:size=13:antialias=true:autohint=true";
-static const char *fonts[] = { "JetbrainsMono Nerd Font:size=13:antialias=true:autohint=true" };
+static char font[] = "JetbrainsMono Nerd Font:size=15:antialias=true:autohint=true";
+static char dmenufont[] = "JetbrainsMono Nerd Font:size=15:antialias=true:autohint=true";
+static const char *fonts[] = { "JetbrainsMono Nerd Font:size=15:antialias=true:autohint=true" };
 static char normbgcolor[] = "#222222";
 static char normbordercolor[] = "#444444";
 static char normfgcolor[] = "#bbbbbb";
 static char selfgcolor[] = "#eeeeee";
 static char selbordercolor[] = "#005577";
 static char selbgcolor[] = "#005577";
-static char termcol0[] = "#000000"; /* black   */
-static char termcol1[] = "#ff0000"; /* red     */
-static char termcol2[] = "#33ff00"; /* green   */
-static char termcol3[] = "#ff0099"; /* yellow  */
-static char termcol4[] = "#0066ff"; /* blue    */
-static char termcol5[] = "#cc00ff"; /* magenta */
-static char termcol6[] = "#00ffff"; /* cyan    */
-static char termcol7[] = "#d0d0d0"; /* white   */
-static char termcol8[]  = "#808080"; /* black   */
-static char termcol9[]  = "#ff0000"; /* red     */
-static char termcol10[] = "#33ff00"; /* green   */
-static char termcol11[] = "#ff0099"; /* yellow  */
-static char termcol12[] = "#0066ff"; /* blue    */
-static char termcol13[] = "#cc00ff"; /* magenta */
-static char termcol14[] = "#00ffff"; /* cyan    */
-static char termcol15[] = "#ffffff"; /* white   */
+static char termcol0[] = "#000000";
+static char termcol1[] = "#ff0000";
+static char termcol2[] = "#33ff00";
+static char termcol3[] = "#ff0099";
+static char termcol4[] = "#0066ff";
+static char termcol5[] = "#cc00ff";
+static char termcol6[] = "#00ffff";
+static char termcol7[] = "#d0d0d0";
+static char termcol8[]  = "#808080";
+static char termcol9[]  = "#ff0000";
+static char termcol10[] = "#33ff00";
+static char termcol11[] = "#ff0099";
+static char termcol12[] = "#0066ff";
+static char termcol13[] = "#cc00ff";
+static char termcol14[] = "#00ffff";
+static char termcol15[] = "#ffffff";
 static char *termcolor[] = {
   termcol0,
   termcol1,
@@ -152,14 +152,13 @@ static const Key keys[] = {
   { MODKEY|ShiftMask, XK_r, spawn, SHCMD("$TERMINAL -e btm") },
   { MODKEY, XK_t, spawn, SHCMD("obsidian") },
   { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
-  { MODKEY, XK_m, spawn, SHCMD("spotify") },
+  { MODKEY, XK_m, spawn, SHCMD("$TERMINAL -e spotify_player") },
   { MODKEY, XK_a, spawn, SHCMD("$TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)") },
 
   // brightness
-  { 0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl set +10%") },
-  { MODKEY, XK_F6, spawn, SHCMD("sct") },
-	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%-") },
-  { MODKEY, XK_F5, spawn, SHCMD("sct 2700") },
+  { 0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set +5%") },
+	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set 5%-") },
+  { 0, XF86XK_Launch3, spawn, SHCMD("xsct -t") },
 
   // multimedia
   { 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle; kill -44 $(pidof dwmblocks)") },
@@ -168,6 +167,9 @@ static const Key keys[] = {
   { 0, XF86XK_AudioPlay, spawn, SHCMD("playerctl -p %any play-pause") },
   { 0, XF86XK_AudioPrev, spawn, SHCMD("playerctl -p %any previous") },
   { 0, XF86XK_AudioNext, spawn, SHCMD("playerctl -p %any next") },
+  { 0, XF86XK_Launch2, spawn, SHCMD("playerctl -p %any play-pause") },
+  { MODKEY, XK_comma, spawn, SHCMD("playerctl -p %any previous") },
+  { MODKEY, XK_period, spawn, SHCMD("playerctl -p %any next") },
 
   // layouts
   { MODKEY, XK_l, setmfact, {.f = +0.05} },
