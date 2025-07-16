@@ -15,6 +15,7 @@ The upstream development for `dwm` can be found [here](https://git.suckless.org/
   - [deck-tilegap](https://dwm.suckless.org/patches/deck/)
 - [fullgaps](https://dwm.suckless.org/patches/fullgaps/)
 - [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
+- [keyboard](https://leosmith.wtf/blog/dwm-keyboard-patch.html)
 - [moveresize](https://dwm.suckless.org/patches/moveresize/)
 - [no border](https://dwm.suckless.org/patches/noborder/)
 - [no title](https://dwm.suckless.org/patches/notitle/)

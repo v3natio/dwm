@@ -148,6 +148,7 @@ struct Monitor {
 	int by;               /* bar geometry */
 	int mx, my, mw, mh;   /* screen size */
 	int wx, wy, ww, wh;   /* window area  */
+  int gap_keyboard;     /* keyboard area */
 	int gappx;            /* gaps between windows */
 	unsigned int seltags;
 	unsigned int sellt;
@@ -279,6 +280,7 @@ static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void xrdb(const Arg *arg);
 static void zoom(const Arg *arg);
+static void openkeyboard(const Arg *arg);
 static void centeredmaster(Monitor *m);
 static void centeredfloatingmaster(Monitor *m);
 
@@ -362,6 +364,16 @@ applyrules(Client *c)
 				c->mon = m;
 		}
 	}
+  /* Make the on-screen keyboard (svkbd) sticky automatically */
+  if (strstr(class, "svkbd")) {
+    /* Calling setsticky here:
+     * - writes the _NET_WM_STATE_STICKY X property so other
+     *   programs know the window is sticky;
+     * - sets c->issticky so ISVISIBLE() works the moment the
+     *   client is mapped.
+     */
+    setsticky(c, 1);
+  }
 	if (ch.res_class)
 		XFree(ch.res_class);
 	if (ch.res_name)
@@ -751,6 +763,7 @@ createmon(void)
 	m = ecalloc(1, sizeof(Monitor));
 	m->tagset[0] = m->tagset[1] = 1;
 	m->mfact = mfact;
+	m->gap_keyboard = 0;
 	m->nmaster = nmaster;
 	m->showbar = showbar;
 	m->topbar = topbar;
@@ -1432,7 +1445,7 @@ monocle(Monitor *m)
 	if (n > 0) /* override layout symbol */
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
-		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
+		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, (m->wh - m->gap_keyboard) - 2 * c->bw, 0);
 }
 
 void
@@ -2255,12 +2268,12 @@ tile(Monitor *m)
 		mw = m->ww - m->gappx;
 	for (i = 0, my = ty = m->gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
 			if (i < m->nmaster) {
-			h = (m->wh - my) / (MIN(n, m->nmaster) - i) - m->gappx;
+      h = ((m->wh - m->gap_keyboard) - my) / (MIN(n, m->nmaster) - i) - m->gappx;
 			resize(c, m->wx + m->gappx, m->wy + my, mw - (2*c->bw) - m->gappx, h - (2*c->bw), 0);
 			if (my + HEIGHT(c) + m->gappx < m->wh)
 				my += HEIGHT(c) + m->gappx;
 		} else {
-			h = (m->wh - ty) / (n - i) - m->gappx;
+      h = ((m->wh - m->gap_keyboard) - ty) / (n - i) - m->gappx;
 			resize(c, m->wx + mw + m->gappx, m->wy + ty, m->ww - mw - (2*c->bw) - 2*m->gappx, h - (2*c->bw), 0);
 			if (ty + HEIGHT(c) + m->gappx < m->wh)
 				ty += HEIGHT(c) + m->gappx;
@@ -2870,6 +2883,49 @@ zoom(const Arg *arg)
 	if (c == nexttiled(selmon->clients) && !(c = nexttiled(c->next)))
 		return;
 	pop(c);
+}
+void
+openkeyboard(const Arg *arg)
+{
+	struct sigaction sa;
+	static int       pid = 0;
+	static int       i = 0;
+	static char      size_kb[20] = {
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	};
+
+	if (selmon->gap_keyboard != 0)
+		selmon->gap_keyboard = 0;
+	if (pid != 0) {
+		kill(pid, SIGKILL);
+		pid = 0;
+		selmon->gap_keyboard = 0;
+	} else {
+		for (i = 0; svkbdcmd[i]; i++)
+			if (svkbdcmd[i][0] == '\n')
+				break;
+		if (svkbdcmd[i] && svkbdcmd[i][0] == '\n') {
+			memset(size_kb, 0, 20);
+			sprintf(size_kb, "%dx%d", sw, sh / kb_height_div);
+			svkbdcmd[i] = size_kb;
+		}
+		if ((pid = fork()) == 0) {
+			if (dpy)
+				close(ConnectionNumber(dpy));
+			setsid();
+
+			sigemptyset(&sa.sa_mask);
+			sa.sa_flags = 0;
+			sa.sa_handler = SIG_DFL;
+			sigaction(SIGCHLD, &sa, NULL);
+
+			execvp(((char **)svkbdcmd)[0], (char **)svkbdcmd);
+			die("dwm: execvp '%s' failed:", ((char **)svkbdcmd)[0]);
+		} else {
+			selmon->gap_keyboard = sh / 3;
+		}
+	}
 }
 
 int

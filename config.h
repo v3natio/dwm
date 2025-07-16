@@ -7,6 +7,7 @@ static unsigned int snap = 32; // snap pixel
 static const int swallowfloating = 0; // 1 means swallow floating windows by default
 static int showbar = 1; // 0 means no bar
 static int topbar = 1; // 0 means bottom bar
+static int kb_height_div = 3; // keyboard height
 static char font[] = "JetbrainsMono Nerd Font:size=15:antialias=true:autohint=true";
 static char dmenufont[] = "JetbrainsMono Nerd Font:size=15:antialias=true:autohint=true";
 static const char *fonts[] = { "JetbrainsMono Nerd Font:size=15:antialias=true:autohint=true" };
@@ -67,6 +68,7 @@ static const Rule rules[] = {
   */
   /* class, instance, title, tags mask, isfloating, isterminal, noswallow, monitor */
   { "Gimp", NULL, NULL, 1 << 7, 0, 0, 0, -1 },
+  { "svkbd", NULL, NULL, 0, 1, 0, 0, -1 },
   { NULL, NULL, "Event Tester", 0, 0, 0, 1, -1 }, // xev
 };
 
@@ -105,6 +107,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; // component of dmenucmd, manipulated in spawn()
 static const char *dmenucmd[] = { "dmenu_recency", "-m", dmenumon, NULL };
+static const char *svkbdcmd[] = { "svkbd-mobile-simple", "-g", "\n", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 #include <X11/XF86keysym.h> // add XF86 keys support
@@ -148,10 +151,12 @@ static const Key keys[] = {
 
   // launch programs
   { MODKEY|ShiftMask, XK_w, spawn, SHCMD("$BROWSER") },
+  { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
+  { MODKEY|ShiftMask, XK_n, openkeyboard, {0} },
   { MODKEY, XK_r, spawn, SHCMD("$TERMINAL -e yazi") },
   { MODKEY|ShiftMask, XK_r, spawn, SHCMD("$TERMINAL -e btm") },
   { MODKEY, XK_t, spawn, SHCMD("obsidian") },
-  { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
+  //{ MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
   { MODKEY, XK_m, spawn, SHCMD("$TERMINAL -e spotify_player") },
   { MODKEY, XK_a, spawn, SHCMD("$TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)") },
 
