@@ -1404,6 +1404,11 @@ manage(Window w, XWindowAttributes *wa)
 	if (c->mon == selmon)
 		unfocus(selmon->sel, 0);
 	c->mon->sel = c;
+  if (strstr(c->name, "svkbd")) {
+    setsticky(c, 1);
+    for (Monitor *m = mons; m; m = m->next)
+      m->gap_keyboard = MIN(c->h, c->mon->wh);  /* reserve actual height */
+  }
 	arrange(c->mon);
 	XMapWindow(dpy, c->win);
 	if (term)
@@ -2895,19 +2900,19 @@ openkeyboard(const Arg *arg)
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 	};
 
-	if (selmon->gap_keyboard != 0)
-		selmon->gap_keyboard = 0;
 	if (pid != 0) {
 		kill(pid, SIGKILL);
 		pid = 0;
 		selmon->gap_keyboard = 0;
+    arrange(selmon);
 	} else {
+    int kbdh = MIN(selmon->wh, selmon->ww) / kb_height_div;
 		for (i = 0; svkbdcmd[i]; i++)
 			if (svkbdcmd[i][0] == '\n')
 				break;
 		if (svkbdcmd[i] && svkbdcmd[i][0] == '\n') {
 			memset(size_kb, 0, 20);
-			sprintf(size_kb, "%dx%d", sw, sh / kb_height_div);
+      printf(size_kb, "%dx%d", selmon->ww, kbdh);
 			svkbdcmd[i] = size_kb;
 		}
 		if ((pid = fork()) == 0) {
@@ -2923,7 +2928,8 @@ openkeyboard(const Arg *arg)
 			execvp(((char **)svkbdcmd)[0], (char **)svkbdcmd);
 			die("dwm: execvp '%s' failed:", ((char **)svkbdcmd)[0]);
 		} else {
-			selmon->gap_keyboard = sh / 3;
+      selmon->gap_keyboard = kbdh;
+      arrange(selmon);
 		}
 	}
 }
