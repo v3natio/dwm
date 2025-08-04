@@ -136,7 +136,6 @@ static const Key keys[] = {
 	{ MODKEY, XK_d, spawn, SHCMD("dmenu_recency") },
 	{ MODKEY, XK_Return, spawn, {.v = termcmd } },
   { MODKEY|ShiftMask, XK_Return, spawn, SHCMD("samedir") },
-  { 0, XF86XK_Launch1, spawn, SHCMD("getrotate") },
   { MODKEY, XK_q, killclient, {0} },
   { MODKEY|ShiftMask, XK_e, quit, {0} },
 
@@ -152,8 +151,8 @@ static const Key keys[] = {
 
   // launch programs
   { MODKEY|ShiftMask, XK_w, spawn, SHCMD("$BROWSER") },
+  { MODKEY|ShiftMask, XK_o, openkeyboard, {0} },
   { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
-  { MODKEY|ShiftMask, XK_n, openkeyboard, {0} },
   { MODKEY, XK_r, spawn, SHCMD("$TERMINAL -e yazi") },
   { MODKEY|ShiftMask, XK_r, spawn, SHCMD("$TERMINAL -e btm") },
   { MODKEY, XK_t, spawn, SHCMD("obsidian") },
@@ -163,9 +162,7 @@ static const Key keys[] = {
 
   // brightness
   { 0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set +5%") },
-  { MODKEY, XK_F4, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set +5%") },
 	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set 5%-") },
-  { MODKEY, XK_F5, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set 5%-") },
   { 0, XF86XK_Launch3, spawn, SHCMD("xsct -t") },
 
   // multimedia
