@@ -136,6 +136,7 @@ static const Key keys[] = {
 	{ MODKEY, XK_d, spawn, SHCMD("dmenu_recency") },
 	{ MODKEY, XK_Return, spawn, {.v = termcmd } },
   { MODKEY|ShiftMask, XK_Return, spawn, SHCMD("samedir") },
+  { 0, XF86XK_Launch1, spawn, SHCMD("getrotate") },
   { MODKEY, XK_q, killclient, {0} },
   { MODKEY|ShiftMask, XK_e, quit, {0} },
 
@@ -156,7 +157,7 @@ static const Key keys[] = {
   { MODKEY, XK_r, spawn, SHCMD("$TERMINAL -e yazi") },
   { MODKEY|ShiftMask, XK_r, spawn, SHCMD("$TERMINAL -e btm") },
   { MODKEY, XK_t, spawn, SHCMD("obsidian") },
-  //{ MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
+  { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
   { MODKEY, XK_m, spawn, SHCMD("$TERMINAL -e spotify_player") },
   { MODKEY, XK_a, spawn, SHCMD("$TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)") },
 
@@ -164,6 +165,9 @@ static const Key keys[] = {
   { 0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set +5%") },
 	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set 5%-") },
   { 0, XF86XK_Launch3, spawn, SHCMD("xsct -t") },
+  { MODKEY, XK_F4, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set 5%-") },
+  { MODKEY, XK_F5, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set +5%") },
+  { MODKEY|ShiftMask, XK_F4, spawn, SHCMD("xsct -t") },
 
   // multimedia
   { 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle; kill -44 $(pidof dwmblocks)") },
@@ -175,6 +179,7 @@ static const Key keys[] = {
   { 0, XF86XK_Launch2, spawn, SHCMD("playerctl -p %any play-pause") },
   { MODKEY, XK_comma, spawn, SHCMD("playerctl -p %any previous") },
   { MODKEY, XK_period, spawn, SHCMD("playerctl -p %any next") },
+  { 0, XF86XK_AudioMicMute, spawn, SHCMD("remute") },
 
   // layouts
   { MODKEY, XK_l, setmfact, {.f = +0.05} },
@@ -206,10 +211,10 @@ static const Key keys[] = {
   { MODKEY|ShiftMask, XK_Left, moveresize, {.v = "0x 0y -25w 0h" } },
 
   // monitors
-	//{ MODKEY, XK_Right, focusmon, {.i = +1 } },
-	//{ MODKEY|ShiftMask, XK_Right, tagmon, {.i = +1 } },
-	//{ MODKEY, XK_Left, focusmon, {.i = -1 } },
-	//{ MODKEY|ShiftMask, XK_Left, tagmon, {.i = -1 } },
+  { MODKEY, XK_bracketright, focusmon, {.i = +1 } },
+  { MODKEY|ShiftMask, XK_bracketright, tagmon, {.i = +1 } },
+  { MODKEY, XK_bracketleft, focusmon, {.i = -1 } },
+  { MODKEY|ShiftMask, XK_bracketleft, tagmon, {.i = -1 } },
 };
 
 /* button definitions */
