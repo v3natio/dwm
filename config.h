@@ -164,12 +164,12 @@ static const Key keys[] = {
   { MODKEY, XK_a, spawn, SHCMD("$TERMINAL -e pulsemixer; kill -44 $(pidof dwmblocks)") },
 
   // brightness
-  { 0, XF86XK_MonBrightnessUp, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set +5%") },
-	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set 5%-") },
-  { 0, XF86XK_Launch3, spawn, SHCMD("xsct -t") },
-  { MODKEY, XK_F4, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set 5%-") },
-  { MODKEY, XK_F5, spawn, SHCMD("brightnessctl --device='intel_backlight' --quiet set +5%") },
-  { MODKEY|ShiftMask, XK_F4, spawn, SHCMD("xsct -t") },
+	{ 0, XF86XK_MonBrightnessDown, spawn, SHCMD("relume -b 5%-") },
+  { 0, XF86XK_MonBrightnessUp, spawn, SHCMD("relume -b +5%") },
+  { 0, XF86XK_Launch3, spawn, SHCMD("relume -c") },
+  { MODKEY, XK_F4, spawn, SHCMD("relume -b 5%-") },
+  { MODKEY, XK_F5, spawn, SHCMD("relume -b +5%") },
+  { MODKEY|ShiftMask, XK_F4, spawn, SHCMD("relume -c") },
 
   // multimedia
   { 0, XF86XK_AudioMute, spawn, SHCMD("amixer set Master toggle; kill -44 $(pidof dwmblocks)") },
