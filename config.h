@@ -67,7 +67,7 @@ static const Rule rules[] = {
   *	WM_NAME(STRING) = title
   */
   /* class, instance, title, tags mask, isfloating, isterminal, noswallow, monitor */
-  { "Gimp", NULL, NULL, 1 << 7, 0, 0, 0, -1 },
+  //{ "Gimp", NULL, NULL, 1 << 7, 0, 0, 0, -1 },
   { "svkbd", NULL, NULL, 0, 1, 0, 0, -1 },
   { NULL, NULL, "Event Tester", 0, 0, 0, 1, -1 }, // xev
 };
@@ -155,7 +155,8 @@ static const Key keys[] = {
   { MODKEY|ShiftMask, XK_w, spawn, SHCMD("$BROWSER") },
   { MODKEY|ShiftMask, XK_o, openkeyboard, {0} },
   { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
-  { MODKEY, XK_r, spawn, SHCMD("$TERMINAL -e yazi") },
+  //{ MODKEY, XK_r, spawn, SHCMD("$TERMINAL -e yazi") },
+  { MODKEY, XK_r, spawn, SHCMD("$TERMINAL -e zsh -ic 'lf; exec zsh -i'") },
   { MODKEY|ShiftMask, XK_r, spawn, SHCMD("$TERMINAL -e btm") },
   { MODKEY, XK_t, spawn, SHCMD("obsidian") },
   { MODKEY, XK_n, spawn, SHCMD("$TERMINAL -e newsboat") },
